@@ -8,11 +8,16 @@ from psycopg2 import OperationalError as Psycopg2OpError
 from django.db.utils import OperationalError
 from django.core.management.base import BaseCommand
 
+from typeguard import typechecked
+from typing import Any
 
+
+@typechecked
 class Command(BaseCommand):
     """Django command to wait for the database."""
 
-    def handle(self, *args, **options):
+    @typechecked
+    def handle(self, *args: Any, **options: Any) -> None:
         """Entrypoint for command."""
         self.stdout.write('Waiting for database...')
         db_up = False

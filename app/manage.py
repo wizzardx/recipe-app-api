@@ -3,8 +3,11 @@
 import os
 import sys
 
+from typeguard import typechecked
 
-def main():
+
+@typechecked
+def main() -> None:
     """Run administrative tasks."""
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'app.settings')
     try:

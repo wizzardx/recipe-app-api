@@ -7,12 +7,16 @@ from django.contrib.auth.models import (
     BaseUserManager,
     PermissionsMixin
 )
+from typeguard import typechecked
+from typing import Optional
 
 
+@typechecked
 class UserManager(BaseUserManager):
     """Manager for users."""
 
-    def create_user(self, email, password=None, **extra_fields):
+    def create_user(self, email: str, password: Optional[str] = None,
+                    **extra_fields) -> 'User':
         """Create, save and return a new user."""
         if not email:
             raise ValueError('User must have an email address.')
@@ -22,7 +26,7 @@ class UserManager(BaseUserManager):
 
         return user
 
-    def create_superuser(self, email, password):
+    def create_superuser(self, email: str, password: str) -> 'User':
         """Create and return a new superuser."""
         user = self.create_user(email, password)
         user.is_staff = True
