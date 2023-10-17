@@ -4,7 +4,6 @@ Calculator functions
 
 from typing import Union
 
-
 # Numeric type for python, using typing module.
 from typeguard import typechecked
 
